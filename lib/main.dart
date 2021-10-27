@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'dart:math';
 
 void main() {
@@ -11,7 +12,6 @@ class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
-
 class _MyAppState extends State<MyApp> {
   String drop_down = 'blue';
   String dropdownValue = 'One';
@@ -88,7 +88,8 @@ class Dice extends StatefulWidget {
 class _DiceState extends State<Dice> {
   int leftbuttonpressed = 1;
   int rightbuttonpressed = 1;
-
+  //defining audio player
+  final player = AudioCache(prefix: 'audio/');
   void ChangeValue() {
     leftbuttonpressed = Random().nextInt(6) + 1;
     rightbuttonpressed = Random().nextInt(6) + 1;
@@ -104,6 +105,7 @@ class _DiceState extends State<Dice> {
               onPressed: () {
                 setState(() {
                   ChangeValue();
+                  player.play("dice.mp3");
                 });
               },
               child: Image.asset('images/dice$leftbuttonpressed.png'),
@@ -114,6 +116,7 @@ class _DiceState extends State<Dice> {
               onPressed: () {
                 setState(() {
                   ChangeValue();
+                  player.play("dice.mp3");
                 });
               },
               child: Image.asset('images/dice$rightbuttonpressed.png'),
